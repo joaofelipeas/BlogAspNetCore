@@ -32,7 +32,7 @@ namespace Blog.Models.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<bool> UploadContent(Content content)
+        public Task<bool> UpdateContent(Content content)
         {
             throw new NotImplementedException();
         }

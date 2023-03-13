@@ -12,6 +12,6 @@ namespace Blog.Models.Repositories.IRepositories
 
         Task<bool> RemoveContent(Content content);
 
-        Task<bool> UploadContent(Content content);
+        Task<bool> UpdateContent(Content content);
     }
 }

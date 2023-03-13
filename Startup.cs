@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Blog.Context;
+using Blog.Models.Repositories;
+using Blog.Models.Repositories.IRepositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,6 +29,7 @@ namespace Blog
         {
             services.AddControllersWithViews();
             services.AddDbContext<ContextDb>(o => o.UseSqlServer(Configuration.GetConnectionString("BLOG_DB")));
+            services.AddTransient<IContentRepository, ContentRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
