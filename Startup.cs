@@ -30,6 +30,7 @@ namespace Blog
             services.AddControllersWithViews();
             services.AddDbContext<ContextDb>(o => o.UseSqlServer(Configuration.GetConnectionString("BLOG_DB")));
             services.AddTransient<IContentRepository, ContentRepository>();
+            services.AddTransient<ICommentRepository, CommentRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

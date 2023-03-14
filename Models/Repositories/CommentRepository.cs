@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Blog.Context;
@@ -9,40 +8,25 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Blog.Models.Repositories
 {
-    public class ContentRepository : BaseRepository<Content>, IContentRepository
+    public class CommentRepository : BaseRepository<Comment>, ICommentRepository
     {
         private readonly ContextDb _context;
-        public ContentRepository(ContextDb contextDb) : base(contextDb)
+
+        public CommentRepository(ContextDb contextDb) : base(contextDb)
         {
             _context = contextDb;
         }
 
-        public async Task<IEnumerable<Content>> GetContents()
+        public async Task<IEnumerable<Comment>> GetComments()
         {
-            return await _context.Contents.ToListAsync();
+            return await _context.Comments.ToListAsync();
         }
 
-        public async Task<bool> InsertContent(Content content)
+        public async Task<bool> InsertComment(Comment comment)
         {
             try
             {
-                _context.Contents.Add(content);
-                await _context.SaveChangesAsync();
-                return true;
-            }
-            catch (System.Exception)
-            {
-
-                return false;
-            }
-
-        }
-
-        public async Task<bool> RemoveContent(Content content)
-        {
-            try
-            {
-                _context.Contents.Remove(content);
+                _context.Comments.Add(comment);
                 await _context.SaveChangesAsync();
                 return true;
             }
@@ -53,11 +37,26 @@ namespace Blog.Models.Repositories
             }
         }
 
-        public async Task<bool> UpdateContent(Content content)
+        public async Task<bool> RemoveComment(Comment comment)
         {
             try
             {
-                _context.Contents.Update(content);
+                _context.Comments.Remove(comment);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (System.Exception)
+            {
+
+                return false;
+            }
+        }
+
+        public async Task<bool> UpdateComment(Comment comment)
+        {
+            try
+            {
+                _context.Comments.Update(comment);
                 await _context.SaveChangesAsync();
                 return true;
             }

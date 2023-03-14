@@ -8,6 +8,8 @@ namespace Blog.Context
     {
         public DbSet<Content> Contents { get; set; }
 
+        public DbSet<Comment> Comments { get; set; }
+
         public ContextDb(DbContextOptions options) : base(options)
         {
 
@@ -17,6 +19,7 @@ namespace Blog.Context
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new ContentConfiguration());
+            modelBuilder.ApplyConfiguration(new CommentConfiguration());
         }
     }
 }
